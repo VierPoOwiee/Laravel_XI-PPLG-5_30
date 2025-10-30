@@ -29,7 +29,7 @@ use App\Models\Student;
         <td>{{ $student->nisn }}</td>
         <td>
           <a href="{{ route('students.edit', $student->id) }}" class="btn btn-warning btn-sm">Edit</a>
-          <form action="{{ route('admin.students.destroy', $student->id) }}" method="POST" class="d-inline">
+          <form action="{{ route('students.destroy', $student->id) }}" method="POST" class="d-inline">
             @csrf
             @method('DELETE')
             <button class="btn btn-danger btn-sm">Hapus</button>
