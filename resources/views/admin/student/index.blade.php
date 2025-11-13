@@ -28,6 +28,7 @@ use App\Models\Student;
         <td>{{ $student->jenis_kelamin }}</td>
         <td>{{ $student->nisn }}</td>
         <td>
+            <a href="{{ route('students.show', $student->id) }}" class="btn btn-info btn-sm">Lihat</a>
           <a href="{{ route('students.edit', $student->id) }}" class="btn btn-warning btn-sm">Edit</a>
          <form action="{{ route('students.destroy', $student->id) }}" method="POST" class="d-inline"
          onsubmit="return confirm('Apakah kamu yakin ingin menghapus data siswa ini?')">
