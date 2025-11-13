@@ -5,6 +5,21 @@
 @section('content')
 <div class="container">
   <h1 class="mb-4">Data Mata Pelajaran</h1>
+  
+  @if(session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <strong>Berhasil!</strong> {{ session('success') }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  @endif
+
+  @if(session('error'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>Error!</strong> {{ session('error') }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  @endif
+
   <a href="{{ route('mapels.create') }}" class="btn btn-primary mb-3">+ Tambah Mata Pelajaran</a>
 <table class="table table-bordered">
     <thead>
@@ -29,10 +44,12 @@
             <a href="{{ route('mapels.show', $mapel->id) }}" class="btn btn-info btn-sm">Lihat</a>
           <a href="{{ route('mapels.edit', $mapel->id) }}" class="btn btn-warning btn-sm">Edit</a>
          <form action="{{ route('mapels.destroy', $mapel->id) }}" method="POST" class="d-inline"
-         onsubmit="return confirm('Apakah kamu yakin ingin menghapus data mata pelajaran ini?')">
+         onsubmit="return confirm('Apakah kamu yakin ingin menghapus data mata pelajaran {{ $mapel->nama_mapel }}?')">
          @csrf
          @method('DELETE')
-         <button class="btn btn-danger btn-sm">Hapus</button>
+         <button type="submit" class="btn btn-danger btn-sm">
+           <i class="fas fa-trash"></i> Hapus
+         </button>
         </form>
         </td>
       </tr>

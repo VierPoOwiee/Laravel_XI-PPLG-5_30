@@ -75,8 +75,13 @@ class MapelController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Mapel $mapel)
     {
-        //
+        try {
+            $mapel->delete();
+            return redirect()->route('mapels.index')->with('success', 'Data mata pelajaran berhasil dihapus!');
+        } catch (\Exception $e) {
+            return redirect()->route('mapels.index')->with('error', 'Gagal menghapus data mata pelajaran. ' . $e->getMessage());
+        }
     }
 }
