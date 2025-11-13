@@ -33,11 +33,23 @@
 
     <div class="sidebar">
       <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-item">
-            <a href="{{ url('/admin/dashboard') }}" class="nav-link active">
+            <a href="{{ route('admin.dashboard') }}" class="nav-link {{ Request::routeIs('admin.dashboard') ? 'active' : '' }}">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>Dashboard</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('students.index') }}" class="nav-link {{ Request::routeIs('students.*') ? 'active' : '' }}">
+              <i class="nav-icon fas fa-user-graduate"></i>
+              <p>Data Siswa</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('mapels.index') }}" class="nav-link {{ Request::routeIs('mapels.*') ? 'active' : '' }}">
+              <i class="nav-icon fas fa-book"></i>
+              <p>Data Mata Pelajaran</p>
             </a>
           </li>
         </ul>
@@ -51,5 +63,7 @@
   </div>
 
 </div>
+
+@stack('scripts')
 </body>
 </html>
