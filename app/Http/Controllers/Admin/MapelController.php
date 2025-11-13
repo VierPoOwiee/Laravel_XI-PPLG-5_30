@@ -22,7 +22,7 @@ class MapelController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.mapel.create');
     }
 
     /**
@@ -30,7 +30,14 @@ class MapelController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'id_mapel' => 'required | unique:mapels',
+            'nama_mapel' => 'required',
+            'id_guru' => 'required | unique:mapels',
+            'nama_guru' => 'required',
+        ]);
+        Mapel::create($request->all());
+        return redirect()->route('mapels.index')->with('success', 'Data berhasil disimpan!');
     }
 
     /**
