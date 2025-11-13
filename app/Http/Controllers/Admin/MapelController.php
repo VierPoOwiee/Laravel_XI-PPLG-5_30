@@ -51,17 +51,25 @@ class MapelController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Mapel $mapel)
     {
-        //
+        return view('admin.mapel.edit', compact('mapel'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Mapel $mapel)
     {
-        //
+        $validated = $request->validate([
+            'id_mapel' => 'required | unique:mapels,id_mapel,' . $mapel->id,
+            'nama_mapel' => 'required',
+            'id_guru' => 'required | unique:mapels,id_guru,' . $mapel->id,
+            'nama_guru' => 'required',
+        ]);
+
+        $mapel->update($validated);
+        return redirect()->route('mapels.index')->with('success', 'Data mata pelajaran berhasil diperbarui');
     }
 
     /**
